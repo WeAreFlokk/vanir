@@ -8,13 +8,13 @@ import { getCollectionType } from './MongoDbContext';
 
 declare module 'mongodb' {
     interface Cursor<T> {
-        toTypedArray<T>(type: Constructor<T>): Promise<T[]>;
+        toTypedArray<T extends {}>(type: Constructor<T>): Promise<T[]>;
         _next(callback?: MongoCallback<T>): any;
         readBufferedDocuments(count: number): any[];
     }
 }
 
-const mapDocument = function <T = any>(type: Constructor<T>, doc: any): T {
+const mapDocument = function <T extends {} = any>(type: Constructor<T>, doc: any): T {
     const instance = new type();
 
     for (const property in doc) {
@@ -67,7 +67,7 @@ Cursor.prototype.readBufferedDocuments = function (count: number): any[] {
  * @param {Cursor} this Cursor.
  * @param {Constructor<T>} type Type of array element.
  */
-async function toTypedArray<T>(this: Cursor, type: Constructor<T>): Promise<T[]> {
+async function toTypedArray<T extends {}>(this: Cursor, type: Constructor<T>): Promise<T[]> {
     const result = await this.toArray();
     const mappedResult = result.map(_ => mapDocument(type, _));
     return mappedResult;

@@ -8,7 +8,7 @@ import { Binary } from 'mongodb';
  * Represents a custom type that is able to serialize and deserialize to and from mongo for a specific type.
  */
 
-export abstract class CustomType<T = any> {
+export abstract class CustomType<T extends {} = any> {
     constructor(readonly targetType: Constructor<T>) {
     }
 
