@@ -32,7 +32,7 @@ describe('when signalling attached for view model with attached method', () => {
 
     try {
         given.manager.attached(viewModel, routeInfo);
-    } catch (ex) {
+    } catch (ex: Error | any) {
         error = ex;
     }
 

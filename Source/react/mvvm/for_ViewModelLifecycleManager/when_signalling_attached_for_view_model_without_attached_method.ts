@@ -27,7 +27,7 @@ describe('when signalling attached for view model without attached method', () =
 
     try {
         given.manager.attached(viewModel, routeInfo);
-    } catch (ex) {
+    } catch (ex: Error | any) {
         error = ex;
     }
 

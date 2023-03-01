@@ -40,7 +40,7 @@ function getSearchStringParams(searchString: string): any {
     return params;
 }
 
-export function withViewModel<TViewModel, TProps = {}>(viewModelType: Constructor<TViewModel>, view: FunctionComponent<IViewContext<TViewModel, TProps>>) {
+export function withViewModel<TViewModel extends {}, TProps = {}>(viewModelType: Constructor<TViewModel>, view: FunctionComponent<IViewContext<TViewModel, TProps>>) {
     return (props: TProps) => {
         let params = useParams();
         const history = useHistory();

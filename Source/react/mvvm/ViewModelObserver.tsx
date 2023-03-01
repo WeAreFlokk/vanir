@@ -12,7 +12,7 @@ import { container } from 'tsyringe';
 import { IViewModelLifecycleManager } from './IViewModelLifecycleManager';
 import { RouteInfo } from './RouteInfo';
 
-export type ViewModelObserverProps<TViewModel, TProps = {}> = {
+export type ViewModelObserverProps<TViewModel extends {}, TProps = {}> = {
     view: FunctionComponent<IViewContext<TViewModel, TProps>>,
     viewModelType: Constructor<TViewModel>
     props: TProps,
@@ -23,7 +23,7 @@ export type ViewModelObserverProps<TViewModel, TProps = {}> = {
     url: string
 };
 
-export class ViewModelObserver<TViewModel, TProps = {}> extends React.Component<ViewModelObserverProps<TViewModel, TProps>, IViewContext<TViewModel, TProps>> {
+export class ViewModelObserver<TViewModel extends {}, TProps = {}> extends React.Component<ViewModelObserverProps<TViewModel, TProps>, IViewContext<TViewModel, TProps>> {
     private _viewModelLifecycleManager: IViewModelLifecycleManager;
 
     constructor(props: ViewModelObserverProps<TViewModel, TProps>) {

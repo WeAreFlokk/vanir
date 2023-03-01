@@ -18,7 +18,7 @@ describe('when signalling attached for view model with detached method', () => {
 
     try {
         given.manager.detached(viewModel);
-    } catch (ex) {
+    } catch (ex: Error | any) {
         error = ex;
     }
 

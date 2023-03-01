@@ -22,7 +22,7 @@ import { RouteInfo } from './RouteInfo';
     }
 
     /** @inheritdoc */
-    create<TViewModel>(viewModelType: Constructor<TViewModel>): TViewModel {
+    create<TViewModel extends {}>(viewModelType: Constructor<TViewModel>): TViewModel {
         const viewModel = this._container.get(viewModelType);
         return viewModel;
     }

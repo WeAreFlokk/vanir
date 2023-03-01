@@ -13,7 +13,7 @@ export abstract class IViewModelLifecycleManager {
      * Create an instance of a ViewModel
      * @param {Constructor<TViewModel> viewModelType Constructor for the ViewModel to create.
      */
-    abstract create<TViewModel>(viewModelType: Constructor<TViewModel>): TViewModel;
+    abstract create<TViewModel extends {}>(viewModelType: Constructor<TViewModel>): TViewModel;
 
     /**
      * Handle when the ViewModel gets attached to a view.

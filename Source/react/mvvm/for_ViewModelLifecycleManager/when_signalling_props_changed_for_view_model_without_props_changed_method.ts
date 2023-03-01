@@ -20,7 +20,7 @@ describe('when signalling props changed for view model without props changed met
 
     try {
         given.manager.propsChanged(viewModel, props);
-    } catch (ex) {
+    } catch (ex: Error | any) {
         error = ex;
     }
 

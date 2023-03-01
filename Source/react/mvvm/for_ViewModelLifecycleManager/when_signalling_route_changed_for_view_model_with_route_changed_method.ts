@@ -34,7 +34,7 @@ describe('when signalling route changed for view model with route changed method
 
     try {
         given.manager.routeChanged(viewModel, routeInfo);
-    } catch (ex) {
+    } catch (ex: Error | any) {
         error = ex;
     }
 
