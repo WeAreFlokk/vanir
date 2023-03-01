@@ -13,14 +13,14 @@ export abstract class IMongoDatabase {
      * @param {string} name Name of collection to get.
      * @returns {Promise<Collection<TSchema>>}
      */
-    abstract collection<TSchema = any>(name: string): Promise<Collection<TSchema>>;
+    abstract collection<TSchema extends { [key: string]: any; } = any>(name: string): Promise<Collection<TSchema>>;
 
     /**
      * Get a collection by the type of schema / document.
      * @param {Constructor} type Type to get for.
      * @returns {Promise<Collection<TSchema>>}
      */
-    abstract collection<TSchema = any>(type: Constructor<TSchema>): Promise<Collection<TSchema>>;
+    abstract collection<TSchema extends {} = any>(type: Constructor<TSchema>): Promise<Collection<TSchema>>;
 
     /**
      * Get a collection by the type of schema / document.
@@ -28,7 +28,7 @@ export abstract class IMongoDatabase {
      * @param {DbCollectionOptions} options Options to use when getting collection.
      * @returns {Promise<Collection<TSchema>>}
      */
-    abstract collection<TSchema = any>(type: Constructor<TSchema>, options: DbCollectionOptions): Promise<Collection<TSchema>>;
+    abstract collection<TSchema extends {} = any>(type: Constructor<TSchema>, options: DbCollectionOptions): Promise<Collection<TSchema>>;
 
     /**
      * Get a collection by the type of schema / document.
@@ -36,7 +36,7 @@ export abstract class IMongoDatabase {
      * @param {string} name Name of collection to get.
      * @returns {Promise<Collection<TSchema>>}
      */
-    abstract collection<TSchema = any>(type: Constructor<TSchema>, name: string): Promise<Collection<TSchema>>;
+    abstract collection<TSchema extends {} = any>(type: Constructor<TSchema>, name: string): Promise<Collection<TSchema>>;
 
     /**
      * Get a collection by the type of schema / document.
@@ -45,7 +45,7 @@ export abstract class IMongoDatabase {
      * @param {DbCollectionOptions} options Options to use when getting collection.
      * @returns {Promise<Collection<TSchema>>}
      */
-    abstract collection<TSchema = any>(type: Constructor<TSchema>, name: string, options: DbCollectionOptions): Promise<Collection<TSchema>>;
+    abstract collection<TSchema extends {} = any>(type: Constructor<TSchema>, name: string, options: DbCollectionOptions): Promise<Collection<TSchema>>;
 }
 
 

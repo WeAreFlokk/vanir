@@ -22,12 +22,12 @@ export class MongoDatabase implements IMongoDatabase {
     }
 
     /** @inheritdoc */
-    collection<TSchema = any>(name: string): Promise<Collection<TSchema>>
-    collection<TSchema = any>(type: Constructor<TSchema>): Promise<Collection<TSchema>>;
-    collection<TSchema = any>(type: Constructor<TSchema>, options: DbCollectionOptions): Promise<Collection<TSchema>>;
-    collection<TSchema = any>(type: Constructor<TSchema>, name: string): Promise<Collection<TSchema>>;
-    collection<TSchema = any>(type: Constructor<TSchema>, name: string, options: DbCollectionOptions): Promise<Collection<TSchema>>;
-    async collection<TSchema = any>(typeOrName: Constructor<TSchema> | string, nameOrOption?: string | DbCollectionOptions, options?: DbCollectionOptions): Promise<Collection<TSchema>> {
+    collection<TSchema extends { [key: string]: any; } = any>(name: string): Promise<Collection<TSchema>>
+    collection<TSchema extends {} = any>(type: Constructor<TSchema>): Promise<Collection<TSchema>>;
+    collection<TSchema extends {} = any>(type: Constructor<TSchema>, options: DbCollectionOptions): Promise<Collection<TSchema>>;
+    collection<TSchema extends {} = any>(type: Constructor<TSchema>, name: string): Promise<Collection<TSchema>>;
+    collection<TSchema extends {} = any>(type: Constructor<TSchema>, name: string, options: DbCollectionOptions): Promise<Collection<TSchema>>;
+    async collection<TSchema extends {} = any>(typeOrName: Constructor<TSchema> | string, nameOrOption?: string | DbCollectionOptions, options?: DbCollectionOptions): Promise<Collection<TSchema>> {
         let name = (typeOrName instanceof String) ? (typeOrName as string) : pluralize((typeOrName as Constructor).name);
 
         if (nameOrOption) {
