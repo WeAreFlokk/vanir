@@ -8,9 +8,9 @@ import { Message } from './Message';
 
 export abstract class IMessenger {
     abstract observeAll(): Observable<Message>;
-    abstract observe<T>(type: Constructor<T>): Observable<T>;
+    abstract observe<T extends {}>(type: Constructor<T>): Observable<T>;
 
-    abstract subscribeTo<T>(type: Constructor<T>, handler: MessageHandler<T>): void;
+    abstract subscribeTo<T extends {}>(type: Constructor<T>, handler: MessageHandler<T>): void;
 
     abstract publish(message: any): void;
 
