@@ -38,7 +38,7 @@ export class Messenger implements IMessenger {
         return this._messages;
     }
 
-    observe<T>(type: Constructor<T>): Observable<T> {
+    observe<T extends {}>(type: Constructor<T>): Observable<T> {
         this.ensureDocumentListenerFor(type);
         const observable = this._messages.pipe(
             filter(_ => _.type === type),
@@ -47,7 +47,7 @@ export class Messenger implements IMessenger {
         return observable;
     }
 
-    subscribeTo<T>(type: Constructor<T>, handler: MessageHandler<T>): void {
+    subscribeTo<T extends {}>(type: Constructor<T>, handler: MessageHandler<T>): void {
         this.ensureDocumentListenerFor(type);
         const observable = this.observe(type);
         observable.subscribe(_ => handler(_));
@@ -61,7 +61,7 @@ export class Messenger implements IMessenger {
         this._contentDocument = contentDocument;
     }
 
-    private ensureDocumentListenerFor<T>(type: Constructor<T>) {
+    private ensureDocumentListenerFor<T extends {}>(type: Constructor<T>) {
         if (this._documentListeners.has(type)) {
             return;
         }
